@@ -77,7 +77,7 @@ public class Inventariobd {
 
         Connection con = null; // conexion con la base de datos 
 
-        String sql = "DELETE FROM `bdEjercicio1`.`inventario` WHERE `id_inventario`='"+inventario.getId_inventario()+"';";
+        String sql = "DELETE FROM `bdEjercicio1`.`inventario` WHERE `id_inventario`='" + inventario.getId_inventario() + "';";
 
         try {
 
@@ -92,7 +92,7 @@ public class Inventariobd {
         }
         return eliminar;
     }
-    
+
     public List<Inventario> obtenerInventario() {
 
         Connection co = null;
@@ -100,6 +100,49 @@ public class Inventariobd {
         ResultSet rs = null; // ResultSet para ejecutar una consulta y examinar los resultados de la consulta en la base de datos 
 
         String sql = "SELECT * FROM bdEjercicio1.inventario;";
+  
+        List<Inventario> listainventario = new ArrayList<Inventario>();
+
+        try {
+            co = new Conexion().conexionMysql();
+
+            stm = co.createStatement();
+            rs = stm.executeQuery(sql);// sentencia que se va a ejecutar 
+            while (rs.next()) {//El método next () de la interfaz ResultSet mueve el puntero del objeto actual (ResultSet) a la siguiente fila, desde la posición actual.
+
+                // Estos para metros Tienes que ir en orden 
+                Inventario c = new Inventario();
+                c.setId_inventario(rs.getInt(1));// rs. Trae wl resultado de la base de datos 
+                c.setCodigo_pro(rs.getString(2));
+                c.setDescripcion(rs.getString(3));
+                c.setPrecio_compra(rs.getString(4));
+                c.setPrecio_venta(rs.getString(5));
+                c.setCan_productos(rs.getString(6));
+
+                listainventario.add(c); /// Agregamos los objetos obtenidos a mi listapersonas 
+
+            }
+
+            stm.close();// Cierra la Interfaz 
+
+            rs.close();// Cierra el resultado 
+
+            co.close();// Cuerra la conexion
+        } catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+
+        }
+        return listainventario;
+
+    }
+
+    public List<Inventario> obetenerProdctoInventarioCodgo(String codigo) {
+        
+        Connection co = null;
+        Statement stm = null;//Sentencia sql para btener los resultados producidos por la base de datos 
+        ResultSet rs = null; // ResultSet para ejecutar una consulta y examinar los resultados de la consulta en la base de datos 
+
+        String sql = "SELECT * FROM bdEjercicio1.inventario where codigo_pro like \"%" + codigo + "%\"";
 
         List<Inventario> listainventario = new ArrayList<Inventario>();
 
@@ -118,7 +161,49 @@ public class Inventariobd {
                 c.setPrecio_compra(rs.getString(4));
                 c.setPrecio_venta(rs.getString(5));
                 c.setCan_productos(rs.getString(6));
-             
+
+                listainventario.add(c); /// Agregamos los objetos obtenidos a mi listapersonas 
+
+            }
+
+            stm.close();// Cierra la Interfaz 
+
+            rs.close();// Cierra el resultado 
+
+            co.close();// Cuerra la conexion
+        } catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+
+        }
+        return listainventario;
+
+    }
+    
+    public List<Inventario> obetenerProdctoInventarioDescripcion(String descripcion) {
+        Connection co = null;
+        Statement stm = null;//Sentencia sql para btener los resultados producidos por la base de datos 
+        ResultSet rs = null; // ResultSet para ejecutar una consulta y examinar los resultados de la consulta en la base de datos 
+
+        String sql = "SELECT * FROM bdEjercicio1.inventario where descripcion like \"%" + descripcion + "%\"";
+
+        List<Inventario> listainventario = new ArrayList<Inventario>();
+
+        try {
+            co = new Conexion().conexionMysql();
+
+            stm = co.createStatement();
+            rs = stm.executeQuery(sql);// sentencia que se va a ejecutar 
+            while (rs.next()) {//El método next () de la interfaz ResultSet mueve el puntero del objeto actual (ResultSet) a la siguiente fila, desde la posición actual.
+
+                // Estos para metros Tienes que ir en orden 
+                Inventario c = new Inventario();
+                c.setId_inventario(rs.getInt(1));// rs. Trae wl resultado de la base de datos 
+                c.setCodigo_pro(rs.getString(2));
+                c.setDescripcion(rs.getString(3));
+                c.setPrecio_compra(rs.getString(4));
+                c.setPrecio_venta(rs.getString(5));
+                c.setCan_productos(rs.getString(6));
+
                 listainventario.add(c); /// Agregamos los objetos obtenidos a mi listapersonas 
 
             }

@@ -31,7 +31,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
     private Provedoresbd controladorprovedor;
     private Inventariobd controladorinvetario;
     private Persona personaEditar;
-    private Inventario inventarioEditar;
+    private Inventario inventarioEditarSeleccionado;
     private GestionPersona gestionPersona;
     private ModelTablePersona modelTablePersona;
     private ModelTableProvedores modelTableProvedores;
@@ -361,7 +361,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
                 .addGap(77, 77, 77)
                 .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelClientesLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(161, 161, 161))
                     .addGroup(panelClientesLayout.createSequentialGroup()
@@ -488,7 +488,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(312, 312, 312)
                         .addComponent(txtPramatroBusquedaProvedor, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(btnBuscarProvedor)
                 .addGap(65, 65, 65))
         );
@@ -598,14 +598,22 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
         });
 
         btneliminarInventario.setText("ELIMINAR");
+        btneliminarInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarInventarioActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("BUSQUEDA");
 
-        combo_busqueda_INVENTARIO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txtParamtroBusquedaInventario.setText("jTextField1");
+        combo_busqueda_INVENTARIO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar Codigo", "Buscar Descripcion" }));
 
         btnBuscarComboboxInventario.setText("BUSCAR");
+        btnBuscarComboboxInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarComboboxInventarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -638,8 +646,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
                                 .addGap(139, 139, 139)
                                 .addComponent(btneditarInventario)
                                 .addGap(113, 113, 113)
-                                .addComponent(btneliminarInventario)
-                                .addGap(92, 92, 92))))
+                                .addComponent(btneliminarInventario))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addComponent(jLabel18)
@@ -649,7 +656,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
                         .addComponent(txtParamtroBusquedaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscarComboboxInventario)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -733,7 +740,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
         panelVentaLayout.setHorizontalGroup(
             panelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVentaLayout.createSequentialGroup()
-                .addContainerGap(826, Short.MAX_VALUE)
+                .addContainerGap(872, Short.MAX_VALUE)
                 .addComponent(titulo_venta)
                 .addGap(74, 74, 74))
         );
@@ -849,22 +856,22 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
 
     public void botonEditarPersona() {
 
-        if (personaEditar == null) { // validamos que exista una persona para Editar 
-            JOptionPane.showMessageDialog(rootPane, "No hay una persona seleccionada para Editar !", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        Persona personaEditarLocal = gestionPersona.guardarEditar();
-        if (personaEditarLocal != null) {// Comprobamos que la persona este corectamente valiadada los campos
-            personaEditarLocal.setIdPersona(personaEditar.getIdPersona());
-            if (controladorPersona.modificarPersona(personaEditarLocal)) { // Sila perona se edito corectamente
-                JOptionPane.showMessageDialog(rootPane, "Persona editada con exito en el Sitema");
-                gestionPersona.vaciarCajasPersona();
-                personaEditar = null; // Dejamos la persona en vacio si se desea busca se tendra que ingresar una nueva Persona
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "No se pudo Editar la Persona !", "Error", JOptionPane.ERROR_MESSAGE);
+            if (personaEditar == null) { // validamos que exista una persona para Editar 
+                JOptionPane.showMessageDialog(rootPane, "No hay una persona seleccionada para Editar !", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+            Persona personaEditarLocal = gestionPersona.guardarEditar();
+            if (personaEditarLocal != null) {// Comprobamos que la persona este corectamente valiadada los campos
+                personaEditarLocal.setIdPersona(personaEditar.getIdPersona());
+                if (controladorPersona.modificarPersona(personaEditarLocal)) { // Sila perona se edito corectamente
+                    JOptionPane.showMessageDialog(rootPane, "Persona editada con exito en el Sitema");
+                    gestionPersona.vaciarCajasPersona();
+                    personaEditar = null; // Dejamos la persona en vacio si se desea busca se tendra que ingresar una nueva Persona
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "No se pudo Editar la Persona !", "Error", JOptionPane.ERROR_MESSAGE);
+                }
 
-        }
+            }
 
     }
 
@@ -1078,8 +1085,72 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
     }//GEN-LAST:event_btnguardarInventarioActionPerformed
 
     private void btneditarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarInventarioActionPerformed
-        // TODO add your handling code here:
+        if (inventarioEditarSeleccionado == null) { // validamos que exista una persona para Editar 
+            JOptionPane.showMessageDialog(rootPane, "No hay una Producto seleccionada para Editar !", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (inventarioEditarSeleccionado != null) {// Comprobamos que la persona este corectamente valiadada los campos
+            inventarioEditarSeleccionado = valoresActualizadosInventario(inventarioEditarSeleccionado);
+            if (controladorinvetario.actualizarInventario(inventarioEditarSeleccionado)){ // Sila perona se edito corectamente
+                JOptionPane.showMessageDialog(rootPane, "Producto editado con exito en el Sitema");
+                vaciarInventario();
+             inventarioEditarSeleccionado=null;
+              modelTableInventario.setInventarios(controladorinvetario.obtenerInventario());
+             modelTableInventario.fireTableDataChanged();
+            
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se pudo Editar el Producto !", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
     }//GEN-LAST:event_btneditarInventarioActionPerformed
+
+    private Inventario valoresActualizadosInventario(Inventario inventario){
+        inventario.setCodigo_pro(txtcodigoProductoInvntario.getText());
+        inventario.setDescripcion(txtdescripcionInventario.getText());
+        inventario.setPrecio_compra(txtprecioCompraInvntario.getText());
+        inventario.setPrecio_venta(txtprecioVentaInventario.getText());
+        inventario.setCan_productos(txtcatidadInventario.getText());
+        return inventario;
+    }
+    
+    
+    private void btneliminarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarInventarioActionPerformed
+        if (inventarioEditarSeleccionado != null) {
+            if (controladorinvetario.eliminarInventario(inventarioEditarSeleccionado)) {
+                JOptionPane.showMessageDialog(rootPane, "Producto Eliminado con exito en el Sitema");
+               vaciarInventario();
+               modelTableInventario.setInventarios(controladorinvetario.obtenerInventario());
+              modelTableInventario.fireTableDataChanged();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se Puedo eliminar El Producto seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No Existe Producto para Eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_btneliminarInventarioActionPerformed
+
+    private void btnBuscarComboboxInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarComboboxInventarioActionPerformed
+
+//        System.out.println(combo_busqueda_INVENTARIO.getSelectedIndex());
+        switch (combo_busqueda_INVENTARIO.getSelectedIndex()) {
+            case 0://Codigo     
+                modelTableInventario.setInventarios(controladorinvetario.obetenerProdctoInventarioCodgo(txtParamtroBusquedaInventario.getText()));
+              modelTableInventario.fireTableDataChanged();
+                
+                break;
+            case 1://Descripcion
+                 modelTableInventario.setInventarios(controladorinvetario.obetenerProdctoInventarioDescripcion(txtParamtroBusquedaInventario.getText()));
+              modelTableInventario.fireTableDataChanged();
+                break;
+            default:
+                
+        }
+    }//GEN-LAST:event_btnBuscarComboboxInventarioActionPerformed
 
     void vaciarProvedores(){
         txtxRuc.setText("");
@@ -1259,6 +1330,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
 
     @Override
     public void clickInventario(Inventario inventario) {
+        inventarioEditarSeleccionado = inventario;
         txtcodigoProductoInvntario.setText(inventario.getCodigo_pro());
         txtdescripcionInventario.setText(inventario.getDescripcion());
         txtprecioCompraInvntario.setText(inventario.getPrecio_compra());

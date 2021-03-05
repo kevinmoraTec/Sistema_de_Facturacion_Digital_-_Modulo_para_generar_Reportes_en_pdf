@@ -208,7 +208,7 @@
                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace pref="447" max="32767" attributes="0"/>
+                              <EmptySpace pref="493" max="32767" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                           </Group>
@@ -636,7 +636,7 @@
                                   <Component id="txtPramatroBusquedaProvedor" min="-2" pref="467" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="52" max="32767" attributes="0"/>
+                          <EmptySpace pref="98" max="32767" attributes="0"/>
                           <Component id="btnBuscarProvedor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
@@ -898,7 +898,6 @@
                                           <Component id="btneditarInventario" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                                           <Component id="btneliminarInventario" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -913,7 +912,7 @@
                                   <Component id="btnBuscarComboboxInventario" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1028,6 +1027,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ELIMINAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btneliminarInventarioActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
@@ -1037,11 +1039,9 @@
                 <Component class="javax.swing.JComboBox" name="combo_busqueda_INVENTARIO">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="2">
+                        <StringItem index="0" value="Buscar Codigo"/>
+                        <StringItem index="1" value="Buscar Descripcion"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -1050,14 +1050,14 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtParamtroBusquedaInventario">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField1"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarComboboxInventario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="BUSCAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarComboboxInventarioActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1097,7 +1097,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="826" max="32767" attributes="0"/>
+                      <EmptySpace pref="872" max="32767" attributes="0"/>
                       <Component id="titulo_venta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                   </Group>
