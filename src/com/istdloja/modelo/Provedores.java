@@ -1,5 +1,8 @@
 package com.istdloja.modelo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author danielmora
@@ -14,11 +17,14 @@ public class Provedores {
     private String apellidoRepresentanteLegal;
     private String telefono;
     private String correo;
-
+    private String Direccion;
+    private Date fechaVencimientoDeuda;
+    private Date fechaRegistro;
+    
     public Provedores() {
     }
 
-    public Provedores(int idProvedores, String ruc, String razonSocial, String tipoActividad, String nombreRepresentanteLegal, String apellidoRepresentanteLegal, String telefono, String correo) {
+    public Provedores(int idProvedores, String ruc, String razonSocial, String tipoActividad, String nombreRepresentanteLegal, String apellidoRepresentanteLegal, String telefono, String correo, String Direccion, Date fechaVencimientoDeuda, Date fechaRegistro) {
         this.idProvedores = idProvedores;
         this.ruc = ruc;
         this.razonSocial = razonSocial;
@@ -27,7 +33,14 @@ public class Provedores {
         this.apellidoRepresentanteLegal = apellidoRepresentanteLegal;
         this.telefono = telefono;
         this.correo = correo;
+        this.Direccion = Direccion;
+        this.fechaVencimientoDeuda = fechaVencimientoDeuda;
+        this.fechaRegistro = fechaRegistro;
     }
+
+
+
+    
     
     
 
@@ -95,13 +108,40 @@ public class Provedores {
         this.correo = correo;
     }
 
-    @Override
-    public String toString() {
-        return "Provedores{" + "idProvedores=" + idProvedores + ", ruc=" + ruc + ", razonSocial=" + razonSocial + ", tipoActividad=" + tipoActividad + ", nombreRepresentanteLegal=" + nombreRepresentanteLegal + ", apellidoRepresentanteLegal=" + apellidoRepresentanteLegal + ", telefono=" + telefono + ", correo=" + correo + '}';
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
     }
     
     
+
+    public Date getFechaVencimientoDeuda() {
+        return fechaVencimientoDeuda;
+    }
+
+    public void setFechaVencimientoDeuda(Date fechaVencimientoDeuda) {
+        this.fechaVencimientoDeuda = fechaVencimientoDeuda;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    @Override
+    public String toString() {
+        return "Provedores{" + "idProvedores=" + idProvedores + ", ruc=" + ruc + ", razonSocial=" + razonSocial + ", tipoActividad=" + tipoActividad + ", nombreRepresentanteLegal=" + nombreRepresentanteLegal + ", apellidoRepresentanteLegal=" + apellidoRepresentanteLegal + ", telefono=" + telefono + ", correo=" + correo + ", fechaVencimientoDeuda=" + fechaVencimientoDeuda + ", fechaRegistro=" + fechaRegistro + '}';
+    }
     
-    
-    
+        public String fechaActualProvedores(){
+        Date fecha = new Date();
+        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY/MM/dd");
+        return formatofecha.format(fecha);
+    }
 }

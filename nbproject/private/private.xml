@@ -10,18 +10,12 @@
             </bookmark>
             <bookmark id="2">
                 <name/>
-                <line>34</line>
+                <line>35</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/modelTables/ModelTableInventario.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istdloja/modelo/Inventario.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/Inventariobd.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/utilidad/Utilidades.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/vistas/GestionContable.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

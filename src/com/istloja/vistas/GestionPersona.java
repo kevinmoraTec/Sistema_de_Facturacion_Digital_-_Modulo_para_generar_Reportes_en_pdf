@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Flow;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,8 +32,9 @@ public class GestionPersona { // JFrame es una clase que pertece al paquete java
     private JTextField txtCorreo;
     private Utilidades utilidades;
     private JFrame frameGestionContable;
+    private JComboBox ComboBoxGeneroPersona;
 
-    public GestionPersona(JTextField txtCedula, JTextField txtNombre, JTextField txtApellido, JTextField txtDireccion, JTextField txtTelefono, JTextField txtCorreo, Utilidades utilidades, JFrame frameGestionContable) {
+    public GestionPersona(JTextField txtCedula, JTextField txtNombre, JTextField txtApellido, JTextField txtDireccion, JTextField txtTelefono, JTextField txtCorreo, Utilidades utilidades, JFrame frameGestionContable, JComboBox ComboBoxGeneroPersona) {
         this.txtCedula = txtCedula;
         this.txtNombre = txtNombre;
         this.txtApellido = txtApellido;
@@ -41,7 +43,10 @@ public class GestionPersona { // JFrame es una clase que pertece al paquete java
         this.txtCorreo = txtCorreo;
         this.utilidades = utilidades;
         this.frameGestionContable = frameGestionContable;
+        this.ComboBoxGeneroPersona = ComboBoxGeneroPersona;
     }
+
+
 
     
 
@@ -103,6 +108,7 @@ public class GestionPersona { // JFrame es una clase que pertece al paquete java
         txtTelefono.setText(null);
         txtCorreo.setText(null);
         txtCedula.requestFocus();
+        ComboBoxGeneroPersona.setSelectedIndex(0);
 
     }
 
@@ -176,6 +182,7 @@ public class GestionPersona { // JFrame es una clase que pertece al paquete java
         persona.setDireccion(txtDireccion.getText());
         persona.setCorreo(txtCorreo.getText());
         persona.setTelefono(txtTelefono.getText());
+        persona.setGenero(ComboBoxGeneroPersona.getSelectedIndex());
         return persona;
 
     }

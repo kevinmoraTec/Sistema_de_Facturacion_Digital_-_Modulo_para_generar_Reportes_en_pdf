@@ -1,5 +1,8 @@
 package com.istdloja.modelo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author danielmora
@@ -13,20 +16,25 @@ public class Persona {
     private String direccion;
     private String correo;
     private String telefono;
+    private Date fechaRegistro;
+    private int genero;
     
      public Persona() {
      
     }
 
-    public Persona(String cedula, String nombre, String apellido, String direccion, String correo, String telefono) {
+    public Persona(String cedula, String nombre, String apellido, String direccion, String correo, String telefono, Date fechaRegistro, int genero) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.correo = correo;
         this.telefono = telefono;
+        this.fechaRegistro = fechaRegistro;
+        this.genero = genero;
     }
-     
+
+
 
     public Persona(int idPersona, String cedula, String nombre, String apellido, String direccion, String correo, String telefono) {
         this.idPersona = idPersona;
@@ -100,10 +108,34 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    @Override
-    public String toString() {
-        return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
+    public Date getFechaRegistro() {
+        return fechaRegistro;
     }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public int getGenero() {
+        return genero;
+    }
+
+    public void setGenero(int genero) {
+        this.genero = genero;
+    }
+    
+       @Override
+    public String toString() {
+        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fechaRegistro=" + fechaRegistro + ", genero=" + genero + '}';
+    }
+    
+    public String fechaActual(){
+        Date fecha = new Date();
+        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY/MM/dd");
+        return formatofecha.format(fecha);
+    }
+
+
 
 //    public void mostrarResultado(){
 //        System.out.println("cedula -------->"+getCedula()+
@@ -115,6 +147,7 @@ public class Persona {
 //                                                        + "-------------------------");
 //    }
 //   
-    
+
+ 
     
 }

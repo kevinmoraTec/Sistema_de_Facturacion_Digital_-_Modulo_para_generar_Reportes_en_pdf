@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTablePersona extends AbstractTableModel { // Como AbstractTableModel es una calse padre la subcalse debe Implementar todos los metodos;
     // Arreglo con el nombre de las Columnas 
 
-    public  String[] m_colNames = {"Cedula", "Nombre", "Apellido", "Direccion", "Telefono", "Correo"}; // Definimos el Encabezado de nuestra tabla 
+    public  String[] m_colNames = {"Cedula", "Nombre", "Apellido", "Direccion", "Telefono", "Correo","Genero"}; // Definimos el Encabezado de nuestra tabla 
 
     private  List<Persona> personas;
     
@@ -52,7 +52,8 @@ public class ModelTablePersona extends AbstractTableModel { // Como AbstractTabl
                 return persona.getTelefono();
             case 5:
                 return persona.getCorreo(); 
-
+            case 6:
+                return persona.getGenero();
         }
         return new String();
     }

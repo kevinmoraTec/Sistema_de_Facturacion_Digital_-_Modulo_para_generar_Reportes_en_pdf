@@ -25,8 +25,9 @@ public class Personabd {
         Statement stm = null;
         // Conexion con la base de datos 
         Connection con = null;
+        
 
-        String sql = "INSERT INTO `bdEjercicio1`.`persona` (`id_persona`,`cedula`, `nombre`, `apellido`, `direccion`, `telefono`, `correo`) VALUES ('" + String.valueOf(persona.getIdPersona()) + "','" + persona.getCedula() + "', '" + persona.getNombre() + " ', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getTelefono() + "', '" + persona.getCorreo() + "')";
+        String sql = "INSERT INTO `bdEjercicio1`.`persona` (`cedula`, `nombre`, `apellido`, `direccion`, `telefono`, `correo`, `fecha_registro`, `genero`) VALUES ('"+persona.getCedula()+"', '"+persona.getNombre()+"', '"+persona.getApellido()+"', '"+persona.getDireccion()+"', '"+persona.getTelefono()+"', '"+persona.getCorreo()+"', '"+persona.fechaActual()+"', '"+persona.getGenero()+"');";
 
         try {
             Conexion conexion = new Conexion(); // instaciamos un objeto de la clase Conexion del paquete com.istdloja.conexionbd
@@ -50,7 +51,7 @@ public class Personabd {
         // Conexion con la base de datos 
         Connection con = null;
 
-        String sql = "UPDATE `bdEjercicio1`.`persona` SET `cedula`='" + persona.getCedula() + "', `nombre`='" + persona.getNombre() + "', `apellido`='" + persona.getApellido() + "', `direccion`='" + persona.getDireccion() + "', `telefono`='" + persona.getTelefono() + "' WHERE `id_persona`='" + persona.getIdPersona() + "'";
+        String sql = "UPDATE `bdEjercicio1`.`persona` SET `cedula`='"+persona.getCedula()+"', `nombre`='"+persona.getNombre()+"', `apellido`='"+persona.getApellido()+"', `direccion`='"+persona.getDireccion()+"', `telefono`='"+persona.getTelefono()+"', `correo`='"+persona.getCorreo()+"', `fecha_registro`='"+persona.fechaActual()+"', `genero`='"+persona.getGenero()+"' WHERE `id_persona`='"+persona.getIdPersona()+"';";
 
         try {
             Conexion conexion = new Conexion(); // instaciamos un objeto de la clase Conexion del paquete com.istdloja.conexionbd
@@ -106,20 +107,20 @@ public class Personabd {
 
             stm = co.createStatement();
             rs = stm.executeQuery(sql);// sentencia que se va a ejecutar 
-            while (rs.next()) {//El método next () de la interfaz ResultSet mueve el puntero del objeto actual (ResultSet) a la siguiente fila, desde la posición actual.
-
-                // Estos para metros Tienes que ir en orden 
-                Persona c = new Persona();
-                c.setIdPersona(rs.getInt(1));// rs. Trae wl resultado de la base de datos 
-                c.setCedula(rs.getString(2));
-                c.setNombre(rs.getString(3));
-                c.setApellido(rs.getString(4));
-                c.setDireccion(rs.getString(5));
-                c.setTelefono(rs.getString(6));
-                c.setCorreo(rs.getString(7));
-                listapersonas.add(c); /// Agregamos los objetos obtenidos a mi listapersonas 
-
-            }
+            //El método next () de la interfaz ResultSet mueve el puntero del objeto actual (ResultSet) a la siguiente fila, desde la posición actual.
+            
+            // Estos para metros Tienes que ir en orden
+            Persona c = new Persona();
+            c.setIdPersona(rs.getInt(1));// rs. Trae wl resultado de la base de datos
+            c.setCedula(rs.getString(2));
+            c.setNombre(rs.getString(3));
+            c.setApellido(rs.getString(4));
+            c.setDireccion(rs.getString(5));
+            c.setTelefono(rs.getString(6));
+            c.setCorreo(rs.getString(7));
+            c.setFechaRegistro(rs.getDate(8));
+            c.setGenero(rs.getInt(9));
+            listapersonas.add(c); /// Agregamos los objetos obtenidos a mi listapersonas
 
             stm.close();// Cierra la Interfaz 
 
@@ -155,6 +156,8 @@ public class Personabd {
                 c.setDireccion(rs.getString(5));
                 c.setTelefono(rs.getString(6));
                 c.setCorreo(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
 
             }
 

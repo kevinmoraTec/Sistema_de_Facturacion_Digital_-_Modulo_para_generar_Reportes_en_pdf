@@ -23,7 +23,7 @@ public class Provedoresbd {
         Statement stm = null;
         //conexion con la base de datos
         Connection con = null;
-        String sql = "INSERT INTO `bdEjercicio1`.`proveedores` (`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`) VALUES ('" + provedores.getRuc() + "', '" + provedores.getRazonSocial() + "', '" + provedores.getTipoActividad() + "', '" + provedores.getNombreRepresentanteLegal() + "', '" + provedores.getApellidoRepresentanteLegal() + "', '" + provedores.getTelefono() + "', '" + provedores.getCorreo() + "');";
+        String sql = "INSERT INTO `bdEjercicio1`.`proveedores` (`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`, `direccion`, `fechaVencimientoDeuda`, `fechaRegistro`) VALUES ('" + provedores.getRuc() + "', '" + provedores.getRazonSocial() + "', '" + provedores.getTipoActividad() + "', '" + provedores.getNombreRepresentanteLegal() + "', '" + provedores.getApellidoRepresentanteLegal() + "', '" + provedores.getTelefono() + "', '" + provedores.getCorreo() + "',, '" + provedores.getDireccion() + "',, '" + provedores.getFechaVencimientoDeuda() + "',, '" + provedores.getFechaRegistro()+ "');";
 
         try {
             Conexion conexion = new Conexion(); // instaciamos un objeto de la clase Conexion del paquete com.istdloja.conexionbd
@@ -47,7 +47,7 @@ public class Provedoresbd {
         // Conexion con la base de datos 
         Connection con = null;
 
-        String sql = "UPDATE `bdEjercicio1`.`proveedores` SET `ruc`='" + provedores.getRuc() + "', `razon_social`='" + provedores.getRazonSocial() + "', `tipo_actividad`='" + provedores.getTipoActividad() + "', `nombre_representante_legal`='" + provedores.getNombreRepresentanteLegal() + "', `apellido_representante_legal`='" + provedores.getApellidoRepresentanteLegal() + "', `telefono`='" + provedores.getTelefono() + "', `correo`='" + provedores.getCorreo() + "' WHERE `id_proveedores`='" + provedores.getIdProvedores() + "';";
+        String sql = "UPDATE `bdEjercicio1`.`proveedores` SET `ruc`='" + provedores.getRuc() + "', `razon_social`='" + provedores.getRazonSocial() + "', `tipo_actividad`='" + provedores.getTipoActividad() + "', `nombre_representante_legal`='" + provedores.getNombreRepresentanteLegal() + "', `apellido_representante_legal`='" + provedores.getApellidoRepresentanteLegal() + "', `telefono`='" + provedores.getTelefono() + "', `correo`='" + provedores.getCorreo() + "', direccion`='" + provedores.getDireccion() + "', `fechaVencimientoDeuda`='" + provedores.getFechaVencimientoDeuda() + "', `fechaRegistro`='" + provedores.fechaActualProvedores() + "' WHERE `id_proveedores`='" + provedores.getIdProvedores() + "';";
 
         try {
             Conexion conexion = new Conexion(); // instaciamos un objeto de la clase Conexion del paquete com.istdloja.conexionbd
@@ -114,6 +114,10 @@ public class Provedoresbd {
                 c.setApellidoRepresentanteLegal(rs.getString(6));
                 c.setTelefono(rs.getString(7));
                 c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
+                c.setFechaVencimientoDeuda(rs.getDate(10));
+                c.setFechaRegistro(rs.getDate(11));
+
                 listaprovedores.add(c); /// Agregamos los objetos obtenidos a mi listapersonas 
 
             }

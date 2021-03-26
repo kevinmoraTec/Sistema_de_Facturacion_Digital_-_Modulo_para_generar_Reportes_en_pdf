@@ -1,5 +1,7 @@
 package com.istloja.utilidad;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -92,7 +94,13 @@ public class Utilidades {
 		} else {
 			return false;
 		}
+                
 
 }
-  
+     public String fechaActual(){
+        Date fecha = new Date();
+        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY/MM/dd");
+        return formatofecha.format(fecha);
+    }
+
 }
