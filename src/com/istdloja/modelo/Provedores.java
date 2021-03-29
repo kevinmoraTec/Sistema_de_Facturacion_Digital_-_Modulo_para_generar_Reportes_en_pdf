@@ -20,11 +20,12 @@ public class Provedores {
     private String Direccion;
     private Date fechaVencimientoDeuda;
     private Date fechaRegistro;
+    private Date fechaActualizacion;
     
     public Provedores() {
     }
 
-    public Provedores(int idProvedores, String ruc, String razonSocial, String tipoActividad, String nombreRepresentanteLegal, String apellidoRepresentanteLegal, String telefono, String correo, String Direccion, Date fechaVencimientoDeuda, Date fechaRegistro) {
+    public Provedores(int idProvedores, String ruc, String razonSocial, String tipoActividad, String nombreRepresentanteLegal, String apellidoRepresentanteLegal, String telefono, String correo, String Direccion, Date fechaVencimientoDeuda, Date fechaRegistro, Date fechaActualizacion) {
         this.idProvedores = idProvedores;
         this.ruc = ruc;
         this.razonSocial = razonSocial;
@@ -36,8 +37,8 @@ public class Provedores {
         this.Direccion = Direccion;
         this.fechaVencimientoDeuda = fechaVencimientoDeuda;
         this.fechaRegistro = fechaRegistro;
+        this.fechaActualizacion = fechaActualizacion;
     }
-
 
 
     
@@ -134,14 +135,19 @@ public class Provedores {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
     @Override
     public String toString() {
-        return "Provedores{" + "idProvedores=" + idProvedores + ", ruc=" + ruc + ", razonSocial=" + razonSocial + ", tipoActividad=" + tipoActividad + ", nombreRepresentanteLegal=" + nombreRepresentanteLegal + ", apellidoRepresentanteLegal=" + apellidoRepresentanteLegal + ", telefono=" + telefono + ", correo=" + correo + ", fechaVencimientoDeuda=" + fechaVencimientoDeuda + ", fechaRegistro=" + fechaRegistro + '}';
+        return "Provedores{" + "idProvedores=" + idProvedores + ", ruc=" + ruc + ", razonSocial=" + razonSocial + ", tipoActividad=" + tipoActividad + ", nombreRepresentanteLegal=" + nombreRepresentanteLegal + ", apellidoRepresentanteLegal=" + apellidoRepresentanteLegal + ", telefono=" + telefono + ", correo=" + correo + ", Direccion=" + Direccion + ", fechaVencimientoDeuda=" + fechaVencimientoDeuda + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + '}';
     }
-    
-        public String fechaActualProvedores(){
-        Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY/MM/dd");
-        return formatofecha.format(fecha);
-    }
+
+ 
+
 }

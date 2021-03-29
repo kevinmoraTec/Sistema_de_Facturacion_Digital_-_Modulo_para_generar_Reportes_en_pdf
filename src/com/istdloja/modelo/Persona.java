@@ -8,7 +8,7 @@ import java.util.Date;
  * @author danielmora
  */
 public class Persona {
-    
+
     private int idPersona;
     private String cedula;
     private String nombre;
@@ -18,40 +18,17 @@ public class Persona {
     private String telefono;
     private Date fechaRegistro;
     private int genero;
-    
-     public Persona() {
-     
-    }
+    private Date fechaAactualizacion;
+    private Date fecha_de_nacimiento;
 
-    public Persona(String cedula, String nombre, String apellido, String direccion, String correo, String telefono, Date fechaRegistro, int genero) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.fechaRegistro = fechaRegistro;
-        this.genero = genero;
-    }
+    public Persona() {
 
-
-
-    public Persona(int idPersona, String cedula, String nombre, String apellido, String direccion, String correo, String telefono) {
-        this.idPersona = idPersona;
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.telefono = telefono;
     }
 
     public Persona(int idPersona) {
         this.idPersona = idPersona;
     }
 
-    
-    
     public int getIdPersona() {
         return idPersona;
     }
@@ -123,19 +100,27 @@ public class Persona {
     public void setGenero(int genero) {
         this.genero = genero;
     }
-    
-       @Override
+
+    public Date getFechaAactualizacion() {
+        return fechaAactualizacion;
+    }
+
+    public void setFechaAactualizacion(Date fechaAactualizacion) {
+        this.fechaAactualizacion = fechaAactualizacion;
+    }
+
+    public Date getFecha_de_nacimiento() {
+        return fecha_de_nacimiento;
+    }
+
+    public void setFecha_de_nacimiento(Date fecha_de_nacimiento) {
+        this.fecha_de_nacimiento = fecha_de_nacimiento;
+    }
+
+    @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fechaRegistro=" + fechaRegistro + ", genero=" + genero + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fechaRegistro=" + fechaRegistro + ", genero=" + genero + ", fechaAactualizacion=" + fechaAactualizacion + ", fecha_de_nacimiento=" + fecha_de_nacimiento + '}';
     }
-    
-    public String fechaActual(){
-        Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY/MM/dd");
-        return formatofecha.format(fecha);
-    }
-
-
 
 //    public void mostrarResultado(){
 //        System.out.println("cedula -------->"+getCedula()+
@@ -147,7 +132,4 @@ public class Persona {
 //                                                        + "-------------------------");
 //    }
 //   
-
- 
-    
 }

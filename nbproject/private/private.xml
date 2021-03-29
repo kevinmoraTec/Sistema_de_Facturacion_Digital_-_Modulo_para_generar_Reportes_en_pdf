@@ -5,17 +5,27 @@
             <url>src/com/istloja/controlador/Personabd.java</url>
             <bookmark id="1">
                 <name/>
-                <line>24</line>
+                <line>30</line>
                 <key/>
             </bookmark>
             <bookmark id="2">
                 <name/>
-                <line>35</line>
+                <line>46</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/vistas/GestionPersona.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/vistas/Acercade.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/TipoUsuariodb.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/Personabd.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/utilidad/Utilidades.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/Inventariobd.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/vistas/GestionContable.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istdloja/modelo/Persona.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istdloja/conexionbd/Conexion.java</file>
+        </group>
     </open-files>
 </project-private>

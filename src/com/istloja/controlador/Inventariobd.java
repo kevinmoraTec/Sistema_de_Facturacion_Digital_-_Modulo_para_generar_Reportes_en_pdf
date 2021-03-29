@@ -9,6 +9,7 @@ import com.istdloja.conexionbd.Conexion;
 import com.istdloja.modelo.Inventario;
 import com.istdloja.modelo.Persona;
 import com.istdloja.modelo.Provedores;
+import com.istloja.utilidad.Utilidades;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -20,15 +21,21 @@ import java.util.List;
  * @author danielmora
  */
 public class Inventariobd {
-
+    Utilidades utilidades;
+    public Inventariobd() {
+         utilidades = new Utilidades();
+    }
     public boolean insertarProducto(Inventario inventario) { // Recibe como paraametro un iNVENTARIO
         boolean registrar = false;
         // Interfaz de acceso con la base de datos 
         Statement stm = null;
         // Conexion con la base de datos 
         Connection con = null;
+          String sql;                                                                                                                                                                                                                                                                                                                                                              ///  `precio_compra_sin_iva`, `precio_compra_con_iva`, `precio_mayorista`, `precio_cliente_fijo`, `precio_cliente_normal`, `fecha_registro`
+         if (inventario.getFecha_caducidad() == null) {
+                      sql="INSERT INTO `bdEjercicio1`.`inventario` (`id_inventario`,`codigo_pro`, `descripcion`, `can_productos`, `precio_compra_sin_iva`, `precio_compra_con_iva`, `precio_mayorista`, `precio_cliente_fijo`, `precio_cliente_normal`, `fecha_registro`) VALUES ('"+inventario.getId_inventario()+"', '"+inventario.getCodigo_pro()+"', '"+inventario.getDescripcion()+"', '"+inventario.getCan_productos()+"', '"+inventario.getPrecios_compra_sin_iva()+"', '"+inventario.getPrecios_compra_con_iva()+"', '"+inventario.getPrecio_mayorista()+"', '"+inventario.getPrecio_cliente_fijo()+"', '"+inventario.getPrecio_cliente_normal()+"', '"+utilidades.devolverFecha(inventario.getFecha_registro())+"');"; 
 
-        String sql = "INSERT INTO `bdEjercicio1`.`inventario` (`codigo_pro`, `descripcion`, `precio_compra`, `precio_venta`, `can_productos`) VALUES ('" + inventario.getCodigo_pro() + "', '" + inventario.getDescripcion() + "', '" + inventario.getPrecio_compra() + "', '" + inventario.getPrecio_venta() + "', '" + inventario.getCan_productos() + "');";
+        }
 
         try {
             Conexion conexion = new Conexion(); // instaciamos un objeto de la clase Conexion del paquete com.istdloja.conexionbd

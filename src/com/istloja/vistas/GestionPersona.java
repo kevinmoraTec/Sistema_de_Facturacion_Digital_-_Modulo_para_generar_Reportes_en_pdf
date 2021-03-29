@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Flow;
@@ -112,7 +113,7 @@ public class GestionPersona { // JFrame es una clase que pertece al paquete java
 
     }
 
-    public Persona guardarEditar() { // etornamos una persona nulos par activar los mensajes de error 
+    public Persona guardarEditar(boolean isEditar) { // etornamos una persona nulos par activar los mensajes de error 
         Persona persona = new Persona();
 
         if (txtCedula.getText().isEmpty()) {// Sidetecta que el campo cedula esta vacia
@@ -182,7 +183,13 @@ public class GestionPersona { // JFrame es una clase que pertece al paquete java
         persona.setDireccion(txtDireccion.getText());
         persona.setCorreo(txtCorreo.getText());
         persona.setTelefono(txtTelefono.getText());
+        persona.setFechaRegistro(new Date());
         persona.setGenero(ComboBoxGeneroPersona.getSelectedIndex());
+        if (isEditar) {
+            persona.setFechaAactualizacion(new Date());       
+        }else{
+            persona.setFechaRegistro(new Date());
+        }
         return persona;
 
     }

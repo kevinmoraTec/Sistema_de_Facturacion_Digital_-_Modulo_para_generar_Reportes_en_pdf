@@ -97,10 +97,9 @@ public class Utilidades {
                 
 
 }
-     public String fechaActual(){
-        Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY/MM/dd");
-        return formatofecha.format(fecha);
-    }
+     public String devolverFecha(Date fecha) {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        return f.format(fecha);
+    } 
 
 }

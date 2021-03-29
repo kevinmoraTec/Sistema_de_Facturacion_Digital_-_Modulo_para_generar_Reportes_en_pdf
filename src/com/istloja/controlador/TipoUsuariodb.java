@@ -7,8 +7,8 @@ import com.istdloja.modelo.TipoUsuario;
 public class TipoUsuariodb {
     
     // Registro tipodeUsuario
-    public boolean regustrarTipoUsuario(TipoUsuario tipoUsuario){
-     
-    }
+//    public boolean regustrarTipoUsuario(TipoUsuario tipoUsuario){
+//     
+//    }
     
 }
