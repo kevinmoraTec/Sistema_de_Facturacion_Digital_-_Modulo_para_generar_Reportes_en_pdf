@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTableInventario extends AbstractTableModel { // Como AbstractTableModel es una calse padre la subcalse debe Implementar todos los metodos;
     // Arreglo con el nombre de las Columnas 
 
-    public  String[] m_colNames = {"CODIGO PRODUCTO", "DESCRIPCION", "PRECIO COMPRA", "PRECIO VENTA", "CATIDAD"}; // Definimos el Encabezado de nuestra tabla 
+    public  String[] m_colNames = {"CODIGO PRODUCTO", "DESCRIPCION", "CANTIDAD PRODUCTOS", "PRECIO VENTA SIN IVA", "PRECIO VENTA CON IVA", "PRECIO MAYORISTA", "PRECIO CLIENTE FIJO", "PRECIO CLIENTE NORMAL", "FECHA CADUCIDAD"}; // Definimos el Encabezado de nuestra tabla 
 
     private  List<Inventario> inventarios;
     
@@ -49,12 +49,19 @@ public class ModelTableInventario extends AbstractTableModel { // Como AbstractT
             case 1:
                 return inventario.getDescripcion();
             case 2:
-                return inventario.getPrecio_compra();
-            case 3:
-                return inventario.getPrecio_venta();
-            case 4:
                 return inventario.getCan_productos();
-          
+            case 3:
+                return inventario.getPrecios_compra_sin_iva();
+            case 4:
+                return inventario.getPrecios_compra_con_iva();
+                case 5:
+                return inventario.getPrecio_mayorista();
+                case 6:
+                return inventario.getPrecio_cliente_fijo();
+                case 7:
+                return inventario.getPrecio_cliente_normal();
+                case 8:
+                return inventario.getFecha_caducidad();
         }
         return new String();
     }

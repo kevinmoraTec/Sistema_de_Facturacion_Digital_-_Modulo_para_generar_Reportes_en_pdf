@@ -1,5 +1,7 @@
 package com.istloja.utilidad;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -101,5 +103,14 @@ public class Utilidades {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
         return f.format(fecha);
     } 
+     
+         public String devolverformatoDecimal(double decimal) {
+
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+
+        DecimalFormat d = new DecimalFormat("#.##" , separadoresPersonalizados);
+        return d.format(decimal);
+    }
 
 }
