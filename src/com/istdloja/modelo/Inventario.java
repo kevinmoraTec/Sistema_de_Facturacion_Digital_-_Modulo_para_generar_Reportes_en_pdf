@@ -24,7 +24,7 @@ public class Inventario { // creamos mi modelo de inventario con geters y seter 
     private Date fecha_caducidad;
     private Date fecha_registro;
     private Date fecha_actualizacion;
-   
+   private int CantidadProdVenta;
 
     public Inventario() {
     }
@@ -139,6 +139,15 @@ public class Inventario { // creamos mi modelo de inventario con geters y seter 
     public void setFecha_actualizacion(Date fecha_actualizacion) {
         this.fecha_actualizacion = fecha_actualizacion;
     }
+
+    public int getCantidadProdVenta() {
+        return CantidadProdVenta;
+    }
+
+    public void setCantidadProdVenta(int CantidadProdVenta) {
+        this.CantidadProdVenta = CantidadProdVenta;
+    }
+    
 
     @Override
     public String toString() {

@@ -103,14 +103,27 @@ public class Utilidades {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
         return f.format(fecha);
     } 
+     public Date devolverFechaactual(){
+         java.util.Date fecha = new Date();
+            System.out.println (fecha);    
+            return fecha;
+     }
      
-         public String devolverformatoDecimal(double decimal) {
+         public double devolverformatoDecimal(double decimal) {// devoviaString
 
         DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
         separadoresPersonalizados.setDecimalSeparator('.');
 
         DecimalFormat d = new DecimalFormat("#.##" , separadoresPersonalizados);
-        return d.format(decimal);
+        //return d.format(decimal);
+        return Math.round(decimal * 100) / 100d;
     }
+
+    public Date devolverFechaactual2(Object object) {
+        
+              return (Date) object;
+
+    }
+         
 
 }

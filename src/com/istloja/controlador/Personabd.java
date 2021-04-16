@@ -157,7 +157,7 @@ public class Personabd {
         Persona c = null;
 
         String sql = "SELECT * FROM bdEjercicio1.persona where cedula = " + cedula + ";";
-
+                 
         try {
             co = new Conexion().conexionMysql();// conectamos la base de daatos
             stm = co.createStatement(); // el cvalor inicial para coorer la sentencia 
@@ -228,6 +228,45 @@ public class Personabd {
 
         }
         return p;
+    }
+        public List<Persona> obtenerPersonaCedula(String cedula) {
+        Connection co = null; // Coneccion con la base de datos 
+        Statement stm = null;//  Preparar los datos de la base de datos
+        ResultSet rs = null;// Obtener los datos de la base de datos 
+         List<Persona> personasEncontradas = new ArrayList<>();
+
+        String sql = "SELECT * FROM bdEjercicio1.persona where cedula like \"%" + cedula + "%\"";
+                 
+        try {
+            co = new Conexion().conexionMysql();// conectamos la base de daatos
+            stm = co.createStatement(); // el cvalor inicial para coorer la sentencia 
+            rs = stm.executeQuery(sql);// Corremos la Sentencia 
+            while (rs.next()) {// recorre ls datos de la base de datos  ("Si no entra al metodo nos da una Persona VACIA ")
+              Persona c = new Persona(); // Instancion Una Persona ;
+                
+                c.setIdPersona(rs.getInt(1));
+                c.setCedula(rs.getString(2));
+                c.setNombre(rs.getString(3));
+                c.setApellido(rs.getString(4));
+                c.setDireccion(rs.getString(5));
+                c.setTelefono(rs.getString(6));
+                c.setCorreo(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                c.setFechaAactualizacion(rs.getDate(10));
+                c.setFecha_de_nacimiento(rs.getDate(11));
+                 personasEncontradas.add(c);
+            }
+
+            stm.close();// Cierra la interfaz
+            rs.close();// Cieree el resultado con la base de datos 
+            co.close();;//Cierra  la coneccion
+
+        } catch (Exception ex) {
+            System.out.println("Error ::5.1::" + ex.getMessage());
+
+        }
+        return personasEncontradas;
     }
 
     public List<Persona> getPersonaNombre(String nombre) {
