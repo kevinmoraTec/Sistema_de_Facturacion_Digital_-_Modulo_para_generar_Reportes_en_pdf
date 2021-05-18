@@ -17,11 +17,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/vistas/GestionPersona.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/Personabd.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/Inventariobd.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/utilidad/Utilidades.java</file>
-            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/Provedoresbd.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istdloja/modelo/Venta.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/Nota_de_Ventabd.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/controlador/ProductoVendidobd.java</file>
+            <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istdloja/modelo/ProductoVendido.java</file>
             <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istloja/vistas/GestionContable.java</file>
             <file>file:/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora%20Kevin)_/src/com/istdloja/modelo/Persona.java</file>
         </group>

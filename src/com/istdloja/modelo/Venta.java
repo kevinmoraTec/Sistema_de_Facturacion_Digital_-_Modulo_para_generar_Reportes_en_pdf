@@ -10,7 +10,7 @@ package com.istdloja.modelo;
  * @author danielmora
  */                     
 public class Venta {
-    
+    private int idProductoInventario;
     private int cantidad;
     private String descripcioPventa;
     private double subtotal;
@@ -19,11 +19,23 @@ public class Venta {
     public Venta() {
     }
 
+    public int getIdProductoInventario() {
+        return idProductoInventario;
+    }
+
+    public void setIdProductoInventario(int idProductoInventario) {
+        this.idProductoInventario = idProductoInventario;
+    }
+    
+
     public int getCantidad() {
         return cantidad;
     }
 
     public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+     public void setid(int cantidad) {
         this.cantidad = cantidad;
     }
 

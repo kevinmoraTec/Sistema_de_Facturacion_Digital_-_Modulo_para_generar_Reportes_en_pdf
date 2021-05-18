@@ -67,7 +67,7 @@ public class Utilidades {
         } else if (numero.length() > 10) {
             return false;
         }
-        if (numero.charAt(0)!='0') {
+            if (numero.charAt(0)!='0') {
             return false;
         }
 
@@ -104,6 +104,7 @@ public class Utilidades {
         return f.format(fecha);
     } 
      public Date devolverFechaactual(){
+         
          java.util.Date fecha = new Date();
             System.out.println (fecha);    
             return fecha;
@@ -116,13 +117,16 @@ public class Utilidades {
 
         DecimalFormat d = new DecimalFormat("#.##" , separadoresPersonalizados);
         //return d.format(decimal);
-        return Math.round(decimal * 100) / 100d;
+        return Math.round(decimal * 100.0) / 100.0;
     }
 
     public Date devolverFechaactual2(Object object) {
         
               return (Date) object;
 
+    }
+       public double dosDecimalesVenta(double entrada){
+        return Math.round(entrada*100.0)/100.0;
     }
          
 

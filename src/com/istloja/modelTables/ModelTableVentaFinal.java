@@ -14,9 +14,9 @@ import java.util.List;
  *
  * @author danielmora
  */
-public class ModelTableVentaFinal extends AbstractTableModel{
-    
-    public String[] n_colNames ={"CANTIDAD","DESCRIPCION","SUBTOTAL","TOTAL"};
+public class ModelTableVentaFinal extends AbstractTableModel {
+
+    public String[] n_colNames = {"CANTIDAD", "DESCRIPCION", "SUBTOTAL", "TOTAL"};
     public List<Venta> ventaProductos;
     private GestionContable gestionContableVenta;
 
@@ -24,8 +24,6 @@ public class ModelTableVentaFinal extends AbstractTableModel{
         this.ventaProductos = ventaProductos;
         this.gestionContableVenta = gestionContableVenta;
     }
-    
-    
 
     @Override
     public int getRowCount() {
@@ -40,11 +38,25 @@ public class ModelTableVentaFinal extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return retornarCantidadesAlaTabla(rowIndex, columnIndex);
-        
+        Venta venta = ventaProductos.get(rowIndex);
+        switch (columnIndex) {
+            case 0:
+                return venta.getCantidad();
+            case 1:
+                return venta.getDescripcioPventa();
+            case 2:
+                return venta.getSubtotal();
+
+            case 3:
+                return venta.getTotal();
+            //default:
+
         }
-    
-        @Override
+        return new String();
+
+    }
+
+    @Override
     public String getColumnName(int column) {
         return n_colNames[column];
     }
@@ -55,6 +67,7 @@ public class ModelTableVentaFinal extends AbstractTableModel{
         return super.isCellEditable(rowIndex, columnIndex);
 
     }
+
     public List<Venta> getProductoVentas() {
         return ventaProductos;
     }
@@ -62,28 +75,5 @@ public class ModelTableVentaFinal extends AbstractTableModel{
     public void setProductoVenta(List<Venta> productoVentas) {
         this.ventaProductos = productoVentas;
     }
-    
-    
-    public Object retornarCantidadesAlaTabla(int rowIndex, int columnIndex){
-         Venta venta = this.ventaProductos.get(rowIndex);
-         switch (columnIndex) {
-            case 0:
-                return venta.getCantidad();
-            case 1:
-                return venta.getDescripcioPventa();
-            case 2:
-                return venta.getSubtotal();
-                
-            case 3:
-                return venta.getTotal();
-            //default:
-                
-        }
-         return new String();
-    }
-    }
-    
 
-
-    
-
+}

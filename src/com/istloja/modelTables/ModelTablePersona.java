@@ -37,7 +37,7 @@ public class ModelTablePersona extends AbstractTableModel { // Como AbstractTabl
 
     // Obtenemos las personas de mi arreglo
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
+    public Object getValueAt(int rowIndex, int columnIndex) {// O TAMBIEN seteamos los valores. 
         Persona persona = personas.get(rowIndex);// obtenemos la fila1,fila2,fila3,fila4
         switch (columnIndex) {
             case 0:
