@@ -65,6 +65,9 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
     /**
      * Creates new form GestionPersona2
      */
+    // Para Crear Reportes : Enlace : https://drive.google.com/drive/folders/1mlX9RWI6Oj-m-jU9brEGoMGxt0J9rbxF
+    // clase Practica1 :https://drive.google.com/file/d/1We2Zi7MVJIb2ZGd7iZStR7M4C2lgBMut/view
+    // 
     public GestionContable() {
 
         controladorPersona = new Personabd();
@@ -1748,7 +1751,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
             if (obtenerInventarioVenta != null) {
                 obtenerInventarioVenta.setCantidadProdVenta(Integer.parseInt(txtCantidadProductoVentas.getText()));
                 Venta venta = new Venta();
-
+                venta.setIdProductoInventario(obtenerInventarioVenta.getId_inventario());
                 venta.setCantidad(obtenerInventarioVenta.getCantidadProdVenta());
                 venta.setDescripcioPventa(obtenerInventarioVenta.getDescripcion());
                 //Esta linea nos ayuda a calcular el valor del producto sin iva
@@ -2217,6 +2220,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
         txtNombreClienteVentas.setText("");
         txtTelefonoVentasCliente.setText("");
         txtxDireccionClienteVentas.setText("");
+        personaEditarLocalNotaventa = null;
     }//GEN-LAST:event_txtCedulaRucVentasFocusGained
 
     private void txtIDproductoVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDproductoVentaKeyPressed
@@ -2252,13 +2256,13 @@ public void LimpiarNotaventa(){
     }//GEN-LAST:event_ButtonLimpiar_ventaActionPerformed
     private Persona p;
     private void ButtonGuadarNota_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuadarNota_ventaActionPerformed
-        Persona personaEditarLocal = controladorPersona.getPersonaCedula(txtCedulaRucVentas.getText());
-        if (personaEditarLocal == null) {
+        if (personaEditarLocalNotaventa == null) {
             JOptionPane.showMessageDialog(this, "No hay un cliente seleccionado.", "ERROR", JOptionPane.ERROR_MESSAGE); 
         }
         Nota_de_venta nota_de_venta = new Nota_de_venta();
         nota_de_venta.setNumeroNotaVenta(txtNumerodeNotadeVenta.getText());
-        nota_de_venta.setIdNotaVenta(personaEditarLocal.getIdPersona());
+        nota_de_venta.setPersonaIdPersona(personaEditarLocalNotaventa.getIdPersona());
+        System.out.println("Aqui esta el id"+personaEditarLocalNotaventa.getIdPersona());
         nota_de_venta.setFechaVenta(utilidades.devolverFechaactual2(utilidades.devolverFechaactual()));
         nota_de_venta.setSubTotal(Double.parseDouble(txtSubTotalVentaFinal.getText()));
         nota_de_venta.setIva(Double.parseDouble(txtIvaVentaFinal.getText()));
@@ -2272,6 +2276,7 @@ public void LimpiarNotaventa(){
                 for (Venta venta : ventasFinal) {
                     ProductoVendido productoVendido = new ProductoVendido();
                     productoVendido.setInventarioIdInvetario(venta.getIdProductoInventario());
+                    System.out.println("id Producto"+venta.getIdProductoInventario());
                     productoVendido.setNotaVentaIdNotaVenta(nota_de_venta.getIdNotaVenta());
                     productoVendido.setCantidadProductos(venta.getCantidad());
                     productoVendido.setValorTotal(venta.getTotal());
@@ -2291,17 +2296,17 @@ public void LimpiarNotaventa(){
                 
         
     }//GEN-LAST:event_ButtonGuadarNota_ventaActionPerformed
-
+private Persona personaEditarLocalNotaventa;
     public void CargarPersonasVentas() {
 
         if (!txtCedulaRucVentas.getText().isEmpty()) {
-            Persona personaEditarLocal = controladorPersona.getPersonaCedula(txtCedulaRucVentas.getText());
-            if (personaEditarLocal != null) {
+            personaEditarLocalNotaventa = controladorPersona.getPersonaCedula(txtCedulaRucVentas.getText());
+            if (personaEditarLocalNotaventa != null) {
 
-                txtCedulaRucVentas.setText(personaEditarLocal.getCedula());
-                txtNombreClienteVentas.setText(personaEditarLocal.getNombre());
-                txtTelefonoVentasCliente.setText(personaEditarLocal.getTelefono());
-                txtxDireccionClienteVentas.setText(personaEditarLocal.getDireccion());
+                txtCedulaRucVentas.setText(personaEditarLocalNotaventa.getCedula());
+                txtNombreClienteVentas.setText(personaEditarLocalNotaventa.getNombre());
+                txtTelefonoVentasCliente.setText(personaEditarLocalNotaventa.getTelefono());
+                txtxDireccionClienteVentas.setText(personaEditarLocalNotaventa.getDireccion());
                 jDateFechaVentaClientefinal.setDate(utilidades.devolverFechaactual2(utilidades.devolverFechaactual()));
 
             } else {

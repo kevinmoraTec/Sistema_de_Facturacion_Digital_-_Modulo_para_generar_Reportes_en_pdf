@@ -25,11 +25,12 @@ public class ProductoVendidobd {
         //Conexion con la base de datos.
         Connection con = null;
         String sql;
-        sql = "INSERT INTO `bdEjercicio1`.`producto_vendido` (`inventario_id_invetario`, `nota_venta_id_nota_venta`, `cantidad_productos`, `valor_total`) VALUES ("
-                + "'"+productoVendido.getInventarioIdInvetario()+"', "
-                + "'"+productoVendido.getNotaVentaIdNotaVenta()+"', "
-                + "'"+productoVendido.getCantidadProductos()+"', "
-                + "'"+productoVendido.getValorTotal()+"');";
+        sql="INSERT INTO `bdEjercicio1`.`producto_vendido` (`inventario_id_inventario`, `nota_venta_id_nota_venta`, `cantidad_productos`, `valor_total`) VALUES ('"+productoVendido.getInventarioIdInvetario()+"', '"+productoVendido.getNotaVentaIdNotaVenta()+"', '"+productoVendido.getCantidadProductos()+"', '"+productoVendido.getValorTotal()+"');";
+//        sql = "INSERT INTO `bdEjercicio1`.`producto_vendido` (`inventario_id_invetario`, `nota_venta_id_nota_venta`, `cantidad_productos`, `valor_total`) VALUES ("
+//                + "'"+productoVendido.getInventarioIdInvetario()+"', "
+//                + "'"+productoVendido.getNotaVentaIdNotaVenta()+"', "
+//                + "'"+productoVendido.getCantidadProductos()+"', "
+//                + "'"+productoVendido.getValorTotal()+"');";
         try {
             //Es una instancia de la conexion previamente creada.
             Conexion conexion = new Conexion();

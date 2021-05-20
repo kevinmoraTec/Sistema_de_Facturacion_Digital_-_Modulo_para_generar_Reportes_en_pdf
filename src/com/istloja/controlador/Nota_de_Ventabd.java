@@ -27,7 +27,9 @@ public class Nota_de_Ventabd {
         //Conexion con la base de datos.
         Connection con = null;
         String sql;
-        sql ="INSERT INTO `bdEjercicio1`.`nota_venta` (`numero_nota_venta`, `id_persona`, `fecha_venta`, `sub_total`, `iva`, `total`, `tipo_de_pago`) "
+        //INSERT INTO `bdEjercicio1`.`nota_venta` (`id_nota_venta`, `numero_nota_venta`, `persona_id_persona`, `fecha_venta`, `sub_total`, `iva`, `total`, `tipo_de_pago`) VALUES ('1', '1', '8', '2019-09-09', '2.40', '3.90', '3.00', '1');
+
+        sql ="INSERT INTO `bdEjercicio1`.`nota_venta` (`numero_nota_venta`, `persona_id_persona`, `fecha_venta`, `sub_total`, `iva`, `total`, `tipo_de_pago`) "
                 + "VALUES "
                 + "('"+notaVenta.getNumeroNotaVenta()+"',"
                 + " '"+notaVenta.getPersonaIdPersona()+"', "
