@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ModelTableVentaFinal extends AbstractTableModel {
 
-    public String[] n_colNames = {"CANTIDAD", "DESCRIPCION", "SUBTOTAL", "TOTAL"};
+    public String[] n_colNames = {"Cod.Producto","CANTIDAD", "DESCRIPCION", "SUBTOTAL", "TOTAL"};
     public List<Venta> ventaProductos;
     private GestionContable gestionContableVenta;
 
@@ -41,13 +41,18 @@ public class ModelTableVentaFinal extends AbstractTableModel {
         Venta venta = ventaProductos.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return venta.getCantidad();
+                return venta.getIdProductoInventario();
+                
             case 1:
-                return venta.getDescripcioPventa();
+                return venta.getCantidad();
+                
             case 2:
-                return venta.getSubtotal();
+                return venta.getDescripcioPventa();
+                
 
             case 3:
+                return venta.getSubtotal();
+            case 4:    
                 return venta.getTotal();
             //default:
 

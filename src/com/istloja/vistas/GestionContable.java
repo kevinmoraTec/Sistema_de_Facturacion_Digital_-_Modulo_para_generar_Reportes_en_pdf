@@ -87,6 +87,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
         modelTableVentaFinal = new ModelTableVentaFinal(new ArrayList<Venta>(), this);
 
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         radioBotonCedula.setSelected(true);
         utilidades = new Utilidades();
         setLocationRelativeTo(null);
@@ -94,6 +95,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
         gestionProvedores = new GestionContableProvedores(txtxRuc, txtxRazonSiocial, txtTipo_actividad, txtNombre_Representante_Legal, txtApellido_Representante_legal, txtTelefono_Provedores, txtCorreo_provedores, txtDireccionProvedores, jDateFechaVencimientoDeuda, utilidades, this);
         gestionInventario = new GestionInventario(txtcodigoProductoInvntario, txtdescripcionInventario, txtcatidadInventario, txtprecioCompraInvntario_sinIva, txtprecioCompraInvntario_conIva, txtprecioMayoristaInventario, txtPrecioClienteFijo, txtPrecioClienteNormal, jDateInventario, utilidades, this);
         ventasFinal = new ArrayList<>();
+        GenerarNumeroNotaVenta();
     }
 
     /**
@@ -1769,7 +1771,7 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
         if (idProductoVenta != null && !idProductoVenta.isEmpty()) {
             Inventario obtenerInventarioVenta = controladorinvetario.getInventarioParaCodigo(txtIDproductoVenta.getText());
             if (obtenerInventarioVenta != null) {
-                obtenerInventarioVenta.setCantidadProdVenta(Integer.parseInt(txtCantidadProductoVentas.getText()));
+                
                 Venta venta = new Venta();
                 venta.setIdProductoInventario(obtenerInventarioVenta.getId_inventario());
                 venta.setCantidad(obtenerInventarioVenta.getCantidadProdVenta());
@@ -1781,12 +1783,27 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
                 ventasFinal.add(venta);
                 PreciosFinalesVenta();
                 modelTableVentaFinal.setProductoVenta(ventasFinal);
+                int cantidad = 0;
+                for (int i = 0; i < modelTableVentaFinal.getRowCount(); i++) {
+                    if (String.valueOf(obtenerInventarioVenta.getId_inventario()) == jTableVentas.getValueAt(i,1).toString()) {
+                      //  System.out.println(""+obtenerInventarioVenta.setCantidadProdVenta(cantidad + 1);
+                        
+                    }else{
+                    }
+                    
+                }
                 modelTableVentaFinal.fireTableDataChanged();
+                
+                
+//                 do {
+//                    
+//                } while (rootPaneCheckingEnabled);
+                //System.out.println(Integer.parseInt(obtenerInventarioVenta.getCan_productos()) - 1);
             } else {
-                JOptionPane.showMessageDialog(this, "No se encuentra codigo del producto para ingresar ", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "1.No se encuentra codigo del producto para ingresar ", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No se encuentra codigo del producto para ingresar", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "2.No se encuentra codigo del producto para ingresar", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         txtIDproductoVenta.setText("");
         txtCantidadProductoVentas.setText("");
@@ -2236,8 +2253,8 @@ public class GestionContable extends javax.swing.JFrame implements Comunicacionv
     private void txtParamtroBusquedaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtParamtroBusquedaInventarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtParamtroBusquedaInventarioActionPerformed
-public void LimpiarNotaventa(){
- txtCedulaRucVentas.setText(null);
+    public void LimpiarNotaventa() {
+        txtCedulaRucVentas.setText(null);
         txtNombreClienteVentas.setText(null);
         txtTelefonoVentasCliente.setText(null);
         txtxDireccionClienteVentas.setText(null);
@@ -2249,74 +2266,134 @@ public void LimpiarNotaventa(){
         modelTableVentaFinal.setProductoVenta(ventasFinal);
         modelTableVentaFinal.fireTableDataChanged();
         txtNumerodeNotadeVenta.requestFocus();
-}
+    }
     private void ButtonLimpiar_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimpiar_ventaActionPerformed
-       LimpiarNotaventa();
+        LimpiarNotaventa();
     }//GEN-LAST:event_ButtonLimpiar_ventaActionPerformed
-    private Persona p;
+            private Persona p;
+            
+            public void GenerarNumeroNotaVenta(){
+                String numeroSerie = controladorNotadeVenta.NotaVentaSerie_Generar();
+                if (numeroSerie == null) {
+                    txtNumerodeNotadeVenta.setText("000001");
+                }else{
+                    int increment = Integer.parseInt(numeroSerie);
+                    increment = increment +1;
+                    txtNumerodeNotadeVenta.setText("00000"+increment);
+                            
+                }
+                
+                
+            }
+        
     private void ButtonGuadarNota_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonGuadarNota_ventaActionPerformed
         if (personaEditarLocalNotaventa == null) {
-            JOptionPane.showMessageDialog(this, "No hay un cliente seleccionado.", "ERROR", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "No hay un cliente seleccionado.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         Nota_de_venta nota_de_venta = new Nota_de_venta();
         nota_de_venta.setNumeroNotaVenta(txtNumerodeNotadeVenta.getText());
         nota_de_venta.setPersonaIdPersona(personaEditarLocalNotaventa.getIdPersona());
-        System.out.println("Aqui esta el id"+personaEditarLocalNotaventa.getIdPersona());
+        System.out.println("Aqui esta el id" + personaEditarLocalNotaventa.getIdPersona());
         nota_de_venta.setFechaVenta(utilidades.devolverFechaactual2(utilidades.devolverFechaactual()));
         nota_de_venta.setSubTotal(Double.parseDouble(txtSubTotalVentaFinal.getText()));
         nota_de_venta.setIva(Double.parseDouble(txtIvaVentaFinal.getText()));
         nota_de_venta.setTotal(Double.parseDouble(txtTotalVentaFinal.getText()));
         nota_de_venta.setTipoPago(ComboBoxTipodepago.getSelectedIndex());
-         // Inseertar la nota de venta
+        // Inseertar la nota de venta
         if (controladorNotadeVenta.registrarNotaVenta(nota_de_venta)) {
+            System.out.println("11111 if");
             // Me sirve para obtener el ultimo id de la base de datos de la tabla nota de venta.
-            nota_de_venta = controladorNotadeVenta.idRegistrarNotaVenta(nota_de_venta);
-            if (nota_de_venta.getIdNotaVenta()!= 0) {
+            int notVenta = controladorNotadeVenta.idRegistrarNotaVenta();
+            System.out.println("222222 no if ");
+            if (notVenta != 0) {
+                System.out.println("333 if");
                 for (Venta venta : ventasFinal) {
                     ProductoVendido productoVendido = new ProductoVendido();
                     productoVendido.setInventarioIdInvetario(venta.getIdProductoInventario());
-                    System.out.println("id Producto"+venta.getIdProductoInventario());
-                    productoVendido.setNotaVentaIdNotaVenta(nota_de_venta.getIdNotaVenta());
+                    System.out.println("id Producto" + venta.getIdProductoInventario());
+                    productoVendido.setNotaVentaIdNotaVenta(notVenta);
+                    System.out.println("Nota de VENTA Final" +notVenta);
                     productoVendido.setCantidadProductos(venta.getCantidad());
                     productoVendido.setValorTotal(venta.getTotal());
+                    //Inventariobd i = new Inventariobd();
+                    //    i.actualizarStockInventario(venta.getCantidad(),venta.getIdProductoInventario());
                     if (!controladorProductoVendido.registrarProductosVendidos(productoVendido)) {
                         JOptionPane.showMessageDialog(this, "Sucedio un error al registrar los productos.", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "No se pudo registrar la nota de venta revise los parametros.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Video de la Eplicacion : https://www.youtube.com/watch?v=C-3yiKyDofc
+            
+
+            for (int i = 0; i < modelTableVentaFinal.getRowCount(); i++) { // limite del for es la Cantidad de filas 
+                Inventariobd stockActualizar = new Inventariobd();
+                Inventario inventario = new Inventario();
+                int idInventarioPro = Integer.parseInt(jTableVentas.getValueAt(i,0).toString()); // la variavle (i) Reoresenta fila el (1) (Empieza desde 0) (la columna del arreglo);
+                int cantidadProductoFinal = Integer.parseInt(jTableVentas.getValueAt(i,1).toString());
+                inventario = controladorinvetario.getInventarioParaCodigo_for_Stock(idInventarioPro);
+                int stockActualizado = Integer.parseInt(inventario.getCan_productos()) - cantidadProductoFinal;
+                System.out.println("poo"+inventario.getCan_productos());
+                stockActualizar.actualizarStockInventario(stockActualizado, idInventarioPro);
+                
+                
             }
             JOptionPane.showMessageDialog(this, "Nota de venta registrada con éxito en el sistema.", "Información", JOptionPane.INFORMATION_MESSAGE);
             LimpiarNotaventa();
-        }else {
+            GenerarNumeroNotaVenta();
+
+        } else {
             JOptionPane.showMessageDialog(this, "No se pudo registrar la nota de venta (2) revise los parametros.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-                
-        
+
+
     }//GEN-LAST:event_ButtonGuadarNota_ventaActionPerformed
 
     private void botonReportesClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReportesClientesActionPerformed
-        try {
-            // TODO add your handling code here:
 
-            
-            String patchReport = "/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora Kevin)_/src/com/istdloja/conexionbd/Report/ReporteCliente.jasper";
-            HashMap paramatro = new HashMap();
-            String parametroBusqueada = String.valueOf(JOptionPane.showInputDialog("Ingrese El parametro Cedula Para la Busqueda "));
-            paramatro.put("cedula",parametroBusqueada);
-            ConexionReporte.crearReporte(Conexion.conexionBasedeDatosReporte(),patchReport,paramatro);
-        } catch (SQLException ex) {
-            Logger.getLogger(GestionContable.class.getName()).log(Level.SEVERE, null, ex);
+        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea Generar Todos Sus Registros En Su Reporte ", "confirmar ",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (confirmar == JOptionPane.YES_OPTION) {
+            System.out.println("Entro en si Reporte Cliente");
+
+            try {
+                String patchReport = "/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora Kevin)_/src/com/istdloja/conexionbd/Report/ReporteClienteTodosDeBase de Datos.jasper";
+                ConexionReporte.crearReporte(Conexion.conexionBasedeDatosReporte(), patchReport, null);
+                return;
+            } catch (SQLException ex) {
+                System.out.println("Eroor Generar Reporte Clintes Completo");
+            }
+
+        } else {
+            System.out.println("Entro en False Reporte Cliente");
+
+            try {
+                // TODO add your handling code here:
+
+                String patchReport = "/Users/danielmora/NetBeansProjects/Projecto_sist_Facturacion_(Mora Kevin)_/src/com/istdloja/conexionbd/Report/ReporteCliente.jasper";
+                HashMap paramatro = new HashMap();
+                String parametroBusqueada = String.valueOf(JOptionPane.showInputDialog("Ingrese El parametro Cedula Para la Busqueda "));
+                paramatro.put("cedula", parametroBusqueada);
+                ConexionReporte.crearReporte(Conexion.conexionBasedeDatosReporte(), patchReport, paramatro);
+                return;
+            } catch (SQLException ex) {
+                System.out.println("Error Generar Reporte Clintes Especifico");;
+            }
+            //  JOptionPane.showMessageDialog(rootPane, "Acción cancelada", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+
         }
-      
-        
+
+
     }//GEN-LAST:event_botonReportesClientesActionPerformed
 
     private void txtParametroBusquedaPersonaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParametroBusquedaPersonaKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtParametroBusquedaPersonaKeyTyped
-private Persona personaEditarLocalNotaventa;
+    private Persona personaEditarLocalNotaventa;
+
     public void CargarPersonasVentas() {
 
         if (!txtCedulaRucVentas.getText().isEmpty()) {
@@ -2654,7 +2731,7 @@ private Persona personaEditarLocalNotaventa;
                         Iniciar = false;
                         System.out.println("Reinicia CLICK");
                     } catch (InterruptedException e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Hilo del rograma" + e.getMessage());
                     }
                 }
             }

@@ -130,6 +130,30 @@ public class Inventariobd {
         return registrar;
     }
 
+    public boolean actualizarStockInventario(int inventario1, int inventario2) {
+
+        boolean registrar = false;
+        Statement stm = null; // Sentencia sql para btener los resultados producidos por la base de datos 
+        // Conexion con la base de datos 
+        Connection con = null;
+
+        String sql = "UPDATE `bdEjercicio1`.`inventario` SET `can_productos`='" + inventario1 + "' WHERE `id_inventario`='" + inventario2 + "';";
+
+        try {
+            Conexion conexion = new Conexion(); // instaciamos un objeto de la clase Conexion del paquete com.istdloja.conexionbd
+            con = Conexion.conexionMysql();
+            stm = con.createStatement(); // Indicamos que vamos hacer una conexion con la base de datos 
+            stm.execute(sql);// Ejecutamos el comando sql 
+            registrar = true;
+            stm.close(); // cerramos la interfaz 
+            con.close();// cerramos la conexion con la base de datos ;
+        } catch (Exception ex) {
+            System.out.println("Error en actualizar Stock Inventario (Inventariobd)" + ex.getMessage());
+
+        }
+        return registrar;
+    }
+
     public boolean eliminarInventario(Inventario inventario) {
 
         boolean eliminar = false;
@@ -153,7 +177,8 @@ public class Inventariobd {
         }
         return eliminar;
     }
-        public Inventario getInventarioParaCodigo(String codigo) {
+
+    public Inventario getInventarioParaCodigo(String codigo) {
         Connection co = null; // Coneccion con la base de datos 
         Statement stm = null;//  Preparar los datos de la base de datos
         ResultSet rs = null;// Obtener los datos de la base de datos 
@@ -191,8 +216,46 @@ public class Inventariobd {
         }
         return c;
     }
+    public Inventario getInventarioParaCodigo_for_Stock(int id) { // Enviamos el id del Producto
+        Connection co = null; // Coneccion con la base de datos 
+        Statement stm = null;//  Preparar los datos de la base de datos
+        ResultSet rs = null;// Obtener los datos de la base de datos 
+        Inventario c = null;
 
-        public List<Inventario> obetenerProdctoInventarioCodgo(String codigo) {
+        String sql = "SELECT * FROM bdEjercicio1.inventario where id_inventario like \"%" + id + "%\"";
+
+        try {
+            co = new Conexion().conexionMysql();// conectamos la base de daatos
+            stm = co.createStatement(); // el cvalor inicial para coorer la sentencia 
+            rs = stm.executeQuery(sql);// Corremos la Sentencia 
+            while (rs.next()) {// recorre ls datos de la base de datos  ("Si no entra al metodo nos da una Persona VACIA ")
+                c = new Inventario(); // Instancion Una Persona ;
+                c.setId_inventario(rs.getInt(1));// rs. Trae wl resultado de la base de datos 
+                c.setCodigo_pro(rs.getString(2));
+                c.setDescripcion(rs.getString(3));
+                c.setCan_productos(rs.getString(4));
+                c.setPrecios_compra_sin_iva(rs.getDouble(5));
+                c.setPrecios_compra_con_iva(rs.getDouble(6));
+                c.setPrecio_mayorista(rs.getDouble(7));
+                c.setPrecio_cliente_fijo(rs.getDouble(8));
+                c.setPrecio_cliente_normal(rs.getDouble(9));
+                c.setFecha_registro(rs.getDate(10));
+                c.setFecha_actualizacion(rs.getDate(11));
+                c.setFecha_caducidad(rs.getDate(12));
+            }
+
+            stm.close();// Cierra la interfaz
+            rs.close();// Cieree el resultado con la base de datos 
+            co.close();;//Cierra  la coneccion
+
+        } catch (Exception ex) {
+            System.out.println("Error (getInventarioParaCodigo_for_Stock) iNVENTARIOBD " + ex.getMessage());
+
+        }
+        return c;
+    }
+
+    public List<Inventario> obetenerProdctoInventarioCodgo(String codigo) {
 
         Connection co = null;
         Statement stm = null;//Sentencia sql para btener los resultados producidos por la base de datos 

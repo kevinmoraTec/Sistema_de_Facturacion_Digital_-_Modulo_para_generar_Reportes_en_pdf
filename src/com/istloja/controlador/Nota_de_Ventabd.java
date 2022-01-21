@@ -84,7 +84,8 @@ public class Nota_de_Ventabd {
         return registrar;
     }
           
-     public Nota_de_venta idRegistrarNotaVenta(Nota_de_venta nota_de_venta){
+     public int idRegistrarNotaVenta(){
+         int ultimoidNotaVenta = 0;
          boolean registrar = false;
         //Interfaz de acceso a la base de datos
         Statement stm = null;
@@ -92,14 +93,15 @@ public class Nota_de_Ventabd {
         Connection con = null;
         ResultSet rs = null;
         String sql;
-        sql = "SELECT * FROM bdEjercicio1.nota_venta where numero_nota_venta like " + nota_de_venta.getNumeroNotaVenta() + ";";
+        sql = "select max(id_nota_venta) from nota_venta;";
         try {
             Conexion conexion = new Conexion();
             con = conexion.conexionMysql();
             stm = con.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
-                nota_de_venta.setIdNotaVenta(rs.getInt("id_nota_venta"));
+               ultimoidNotaVenta =rs.getInt(1);
+                System.out.println(ultimoidNotaVenta);
             }
             stm.close();
             rs.close();
@@ -108,7 +110,37 @@ public class Nota_de_Ventabd {
             System.out.println("Error al obtener el ID del producto:" + e.getMessage());
         }
 
-        return nota_de_venta;
+        return ultimoidNotaVenta;
+     
+     }     
+     
+     public String NotaVentaSerie_Generar(){
+         String num_serie="";
+         boolean registrar = false;
+        //Interfaz de acceso a la base de datos
+        Statement stm = null;
+        //Conexion con la base de datos.
+        Connection con = null;
+        ResultSet rs = null;
+        String sql;
+        sql = "select max(numero_nota_venta) from nota_venta;";
+        try {
+            Conexion conexion = new Conexion();
+            con = conexion.conexionMysql();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                num_serie = rs.getNString(1);
+                
+            }
+            stm.close();
+            rs.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el ID del producto:" + e.getMessage());
+        }
+
+        return num_serie;
      
      }     
           
